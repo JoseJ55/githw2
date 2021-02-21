@@ -10,7 +10,7 @@ function writePassword() {
 
 }
 
-//Functions is working now needs the min and max for password and have a critiera for when promots aren't answered.
+// a function that calls prompt() and adds the charcter to an array and randomly returns them to the password variable.
 function generatePassword(){
   var p = prompts();
   var password = "";
