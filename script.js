@@ -10,7 +10,7 @@ function writePassword() {
 
 }
 
-//Functions is working now needs the min and max for password.
+//Functions is working now needs the min and max for password and have a critiera for when promots aren't answered.
 function generatePassword(){
   var p = prompts();
   var password = "";
@@ -68,14 +68,29 @@ function generatePassword(){
   return password
 }
 
+// In this function it prompts the user for critira for password and check if it is valid.
 function prompts(){
   var pro = prompt("How many letters do you want. (8 min, 128 max)")
-  var pro1 = confirm("Do you want lowercase letters.")
-  var pro2 = confirm("Do you want uppercase letters.")
-  var pro3 = confirm("Do you want numbers.")
-  var pro4 = confirm("Do you want special charcters. ($, %, &)")
 
-  var p = [pro, pro1, pro2, pro3, pro4]
+  if (pro == null){
+     var p = confirm("You canceled the generator.")
+  }
+  else if (pro > 7 && pro < 129){
+    var pro1 = confirm("Do you want lowercase letters.")
+    var pro2 = confirm("Do you want uppercase letters.")
+    var pro3 = confirm("Do you want numbers.")
+    var pro4 = confirm("Do you want special charcters. ($, %, &)")
+
+    if (pro1 == false && pro2 == false && pro3 == false && pro4 == false){
+      var p = confirm("You need to confirm at least one character type.")
+    }
+    else{
+      var p = [pro, pro1, pro2, pro3, pro4]
+    }
+  }
+  else{
+    var p = confirm("You need to enter a number between 8 and 128.")
+  }
 
   return p
 }
